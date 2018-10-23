@@ -1,11 +1,14 @@
-# Minimal ExtendJ Extension Template
+# ExtendJ Analysis Extension Template
 
 This is a minimal template for ExtendJ extensions.
 
-If you want to build static analysis, use the
-[analysis template](https://bitbucket.org/extendj/analysis-template/).
-If you want to build a compiler with bytecode generation, use the
-[compiler template](https://bitbucket.org/extendj/compiler-template/).
+This template adds a simple string equality error check to the compiler.
+The resulting error checker will not generate Java bytecode, only check for string
+equality errors. If you require Java bytecode generation, look at the 
+[compiler template](https://bitbucket.org/extendj/compiler-template/) instead.
+
+The string equality check is added by the file `src/jastadd/StringEqCheck.jrag`.
+An input file that should trigger this error is in the `testfiles` directory.
 
 
 ## License
