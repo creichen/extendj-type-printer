@@ -1,3 +1,16 @@
+# ExtendJ Type Printer
+
+Based on the _ExtendJ Analysis Extension Template_ (see
+description/instructions below), this ExtendJ variant will print
+identifier names and types at a specified program location, even (in
+some cases) when the relevant type(s) are not visible.
+
+```
+java -jar template.jar -pos 5,10 testfiles/TestBadImport.java 2> /dev/null
+```
+
+Not terribly robust, use at your own risk.
+
 # ExtendJ Analysis Extension Template
 
 This is a minimal template for ExtendJ extensions.

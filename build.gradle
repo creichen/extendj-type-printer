@@ -15,8 +15,13 @@ jastadd {
   modules {
     include("extendj/jastadd_modules") // Include core ExtendJ modules.
 
-    module "template", {
+    module "type-reporter", {
       imports "java8 frontend" // ExtendJ dependency for template module.
+
+      java {
+        basedir "src/frontend-main/"
+        include "**/*.java"
+      }
 
       jastadd {
         basedir "src/jastadd/"
@@ -36,7 +41,7 @@ jastadd {
   }
 
   // Target module to build:
-  module = 'template'
+  module = 'type-reporter'
 
   astPackage = 'org.extendj.ast'
   parser.name = 'JavaParser'
@@ -54,7 +59,7 @@ sourceSets.main {
 }
 
 // Use JavaCompiler if you need bytecode generation.
-jar.manifest.attributes 'Main-Class': 'org.extendj.JavaChecker'
+jar.manifest.attributes 'Main-Class': 'org.extendj.TypeExtractor'
 //jar.manifest.attributes 'Main-Class': 'org.extendj.JavaCompiler'
 jar.destinationDir = projectDir
 
@@ -64,7 +69,7 @@ sourceCompatibility = targetCompatibility = '1.7'
 task sourceZip(type: Zip) {
   description 'Builds a Zip file with the entire repisotory (including the ExtendJ submodule).'
   destinationDir = projectDir
-  archiveName = "template-src.zip"
+  archiveName = "type-reporter-src.zip"
 
   from (projectDir) {
     exclude '**/.git'
@@ -82,5 +87,5 @@ task sourceZip(type: Zip) {
     exclude '**/*.swp'
   }
 
-  into 'template'
+  into 'type-reporter'
 }

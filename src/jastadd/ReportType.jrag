@@ -1,0 +1,51 @@
+/**
+ * Adds a simple error check for the string-equality comparison problem.
+ */
+aspect ReportType {
+    /**
+     * Only works iof isSynthetic() == false
+     */
+    public boolean ASTNode.containsLocation(int line, int column) {
+	int start_line = Symbol.getLine(this.start());
+	int start_column = Symbol.getColumn(this.start());
+	int end_line = Symbol.getLine(this.end());
+	int end_column = Symbol.getColumn(this.end());
+	//System.err.println("[" + start_line + ":" +  start_column + " - " + end_line + "," + end_column + "]");
+
+	// Should handle all program parts
+
+	if (line < start_line || line > end_line) {
+	    return false;
+	}
+
+	if (line > start_line && line < end_line) {
+	    return true;
+	}
+
+	if (line == start_line && column < start_column) {
+	    return false;
+	}
+
+	if (line == end_line && column > end_column) {
+	    return false;
+	}
+
+	return true;
+    }
+
+    /**
+     * Synthetic node?  Has no source location
+     */
+    syn boolean ASTNode.isSynthetic() {
+	return Symbol.getLine(this.start()) == 0;
+    }
+
+    public interface TypedName {
+	public String name();
+	public TypeDecl type();
+    }
+
+    VariableDeclarator implements TypedName;
+    VarAccess implements TypedName;
+}
+

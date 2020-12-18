@@ -1,3 +1,4 @@
 [submodule "extendj"]
 	path = extendj
-	url = https://bitbucket.org/extendj/extendj
+	url = https://github.com/creichen/extendj.git
+        branch = fake-type
